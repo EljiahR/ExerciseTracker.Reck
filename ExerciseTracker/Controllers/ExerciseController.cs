@@ -1,20 +1,23 @@
 ﻿using ExerciseTracker.Models;
 using ExerciseTracker.Repositories.Interfaces;
+using ExerciseTracker.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExerciseTracker.Controllers
 {
+    [ApiController]
+    [Route("[controller]")]
     public class ExerciseController : Controller
     {
-        private readonly IExerciseRepository<PushUp> _exerciseRepository;
-        public ExerciseController(IExerciseRepository<PushUp> exerciseRepository)
+        private readonly IExerciseService _exerciseService;
+        public ExerciseController(IExerciseService exerciseService)
         {
-            _exerciseRepository = exerciseRepository;
+            _exerciseService = exerciseService;
         }
         [HttpGet]
         public IActionResult GetExercises()
         {
-            var exercises = _exerciseRepository.GetAllExercises();
+            var exercises = _exerciseService.GetAllPushUps();
             return Ok(exercises);
         }
     }

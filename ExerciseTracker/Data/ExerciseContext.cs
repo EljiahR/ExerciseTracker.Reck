@@ -7,6 +7,7 @@ namespace ExerciseTracker.Data
     {
         public ExerciseContext(DbContextOptions<ExerciseContext> options) : base(options)
         {
+            Database.EnsureCreated();
         }
         public DbSet<PushUp> PushUps { get; set; }
         

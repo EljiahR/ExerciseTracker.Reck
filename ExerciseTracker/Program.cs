@@ -11,9 +11,9 @@ var services = builder.Services;
 
 // Add services to the container.
 services.AddDbContext<ExerciseContext>(options =>
-    options.UseSqlite("exercise.db"));
-// Add repositories
-services.AddTransient<IExerciseService, PushUpService>();
+    options.UseSqlite(builder.Configuration.GetConnectionString("SqLiteString")), ServiceLifetime.Scoped);
+services.AddScoped<IExerciseRepository<PushUp>, ExerciseRepository<PushUp>>();
+services.AddScoped<IExerciseService, PushUpService>();
 
 services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
