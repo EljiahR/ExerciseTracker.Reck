@@ -1,13 +1,12 @@
 ﻿using ExerciseTracker.Models;
 
-namespace ExerciseTracker.Services.Interfaces
+namespace ExerciseTracker.Services.Interfaces;
+
+public interface IExerciseService<T>
 {
-    public interface IExerciseService
-    {
-        public void AddPushUp(PushUp pushUp);
-        public void DeletePushUp(PushUp pushUp);
-        public void UpdatePushUp(PushUp pushUp);
-        public PushUp GetPushUpById(int id);
-        public IEnumerable<PushUp> GetAllPushUps();
-    }
+    public void AddExercise(T exercise);
+    public void DeleteExercise(T exercise);
+    public void UpdateExercise(T exercise);
+    public PushUp GetExerciseById(int id);
+    public IEnumerable<T> GetAllExercises();
 }
