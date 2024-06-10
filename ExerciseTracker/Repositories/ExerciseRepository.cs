@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ExerciseTracker.Repositories
 {
-    public class ExerciseRepository<T> : IExerciseRepository<T> where T : class
+    public class ExerciseRepository<T> : IExerciseRepository<T>, IDisposable where T : class
     {
         private readonly DbContext _context;
         private readonly DbSet<T> _dbSet;
@@ -14,12 +14,15 @@ namespace ExerciseTracker.Repositories
         }
         public void AddExercise(T exercise)
         {
-            throw new NotImplementedException();
+            _dbSet.Add(exercise);
+            SaveChanges();
+           
         }
 
-        public void DeleteExercise(int id)
+        public void DeleteExercise(T exercise)
         {
-            throw new NotImplementedException();
+            _dbSet.Remove(exercise);
+            SaveChanges();
         }
 
         public void Dispose()
@@ -29,17 +32,21 @@ namespace ExerciseTracker.Repositories
 
         public IEnumerable<T> GetAllExercises()
         {
-            throw new NotImplementedException();
+            return _dbSet.ToList();
         }
 
         public T GetExerciseById(int id)
         {
-            throw new NotImplementedException();
+            return _dbSet.Find(id);
         }
 
         public void UpdateExercise(T exercise)
         {
             throw new NotImplementedException();
+        }
+        public void SaveChanges()
+        {
+            _context.SaveChanges();
         }
     }
 }

@@ -6,6 +6,7 @@
         IEnumerable<T> GetAllExercises();
         void AddExercise(T exercise);
         void UpdateExercise(T exercise);
-        void DeleteExercise(int id);
+        void DeleteExercise(T exercise);
+        void SaveChanges();
     }
 }
