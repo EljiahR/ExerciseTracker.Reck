@@ -1,6 +1,6 @@
 ﻿namespace ExerciseTracker.Repositories.Interfaces
 {
-    public interface IExerciseRepository<T> : IDisposable
+    public interface IExerciseRepository<T>
     {
         T GetExerciseById(int id);
         IEnumerable<T> GetAllExercises();

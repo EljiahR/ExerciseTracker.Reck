@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ExerciseTracker.Repositories
 {
-    public class ExerciseRepository<T> : IExerciseRepository<T>, IDisposable where T : class
+    public class ExerciseRepository<T> : IExerciseRepository<T> where T : class
     {
         private readonly DbContext _context;
         private readonly DbSet<T> _dbSet;

@@ -1,11 +1,24 @@
+using ExerciseTracker.Data;
+using ExerciseTracker.Models;
+using ExerciseTracker.Repositories;
+using ExerciseTracker.Repositories.Interfaces;
+using ExerciseTracker.Services;
+using ExerciseTracker.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+var services = builder.Services;
 
 // Add services to the container.
+services.AddDbContext<ExerciseContext>(options =>
+    options.UseSqlite("exercise.db"));
+// Add repositories
+services.AddTransient<IExerciseService, PushUpService>();
 
-builder.Services.AddControllers();
+services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+services.AddEndpointsApiExplorer();
+services.AddSwaggerGen();
 
 var app = builder.Build();
 

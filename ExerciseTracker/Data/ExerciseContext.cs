@@ -5,10 +5,10 @@ namespace ExerciseTracker.Data
 {
     public class ExerciseContext : DbContext
     {
-        public DbSet<PushUp> PushUps { get; set; }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public ExerciseContext(DbContextOptions<ExerciseContext> options) : base(options)
         {
-            optionsBuilder.UseSqlite("exercise.db");
         }
+        public DbSet<PushUp> PushUps { get; set; }
+        
     }
 }

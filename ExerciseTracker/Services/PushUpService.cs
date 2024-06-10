@@ -1,9 +1,10 @@
 ﻿using ExerciseTracker.Models;
 using ExerciseTracker.Repositories.Interfaces;
+using ExerciseTracker.Services.Interfaces;
 
 namespace ExerciseTracker.Services
 {
-    public class PushUpService
+    public class PushUpService : IExerciseService
     {
         private readonly IExerciseRepository<PushUp> _pushUpRepository;
         public PushUpService(IExerciseRepository<PushUp> pushUpRepository)
