@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ExerciseTracker.Repositories;
 
-public class ExerciseRepository<T> : IExerciseRepository<T> where T : class
+public class EFExerciseRepository<T> : IExerciseRepository<T> where T : class
 {
     private readonly ExerciseContext _context;
     private readonly DbSet<T> _dbSet;
-    public ExerciseRepository(ExerciseContext context)
+    public EFExerciseRepository(ExerciseContext context)
     {
         _context = context;
         _dbSet = context.Set<T>();

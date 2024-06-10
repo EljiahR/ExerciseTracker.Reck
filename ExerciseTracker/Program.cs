@@ -10,9 +10,17 @@ var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
 
 // Add services to the container.
+
+//SqLite context
 services.AddDbContext<ExerciseContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("SqLiteString")), ServiceLifetime.Scoped);
-services.AddScoped<IExerciseRepository<PushUp>, ExerciseRepository<PushUp>>();
+//Sql Server context
+//services.AddDbContext<ExerciseContext>(options =>
+//    options.UseSqlite(builder.Configuration.GetConnectionString("SqlServerString")), ServiceLifetime.Scoped);
+
+// Entity Framework Repo for PushUp model
+services.AddScoped<IExerciseRepository<PushUp>, EFExerciseRepository<PushUp>>();
+// Dapper Repo
 services.AddScoped<IExerciseService<PushUp>, PushUpService>();
 
 services.AddControllers();
